@@ -1,11 +1,14 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
   const navigate = useNavigate();
-
+  const location = useLocation();
   // Lấy thông tin user từ localStorage
   const user = JSON.parse(localStorage.getItem("user"));
-
+  // Xác định đường dẫn trang cá nhân và trạng thái active
+  const userSlug = user ? toSlug(user.Fullname || user.FullName || "") : "";
+  const userProfilePath = user ? `/nguoi-dung/${userSlug}` : "/dang-nhap";
+  const isUserRouteActive = location.pathname.startsWith("/nguoi-dung");
   const navItems = [
     { name: "Trang chủ", path: "/" },
     { name: "Giới thiệu", path: "./gioi-thieu" },
@@ -14,16 +17,30 @@ export default function Header() {
     { name: "Tin tức", path: "./tin-tuc" },
   ];
   //  Xử lý ảnh đại diện trống
-  const userImage =
+  const defaultUserImage = "/images/user.png";
+  const userImageSrc =
     user?.UserPicture && user.UserPicture.trim() !== ""
       ? user.UserPicture
-      : "/public/images/user.png";
+      : defaultUserImage;
 
   //  Xử lý đăng xuất
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/dang-nhap");
   };
+
+  // xửa lý chuyển tên user thành slug
+  function toSlug(s) {
+    return (s || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9\s-]/g, "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+  }
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -83,15 +100,24 @@ export default function Header() {
               <div className="flex items-center gap-3">
                 {/* Avatar + tên user */}
                 <NavLink
-                  to="/nguoi-dung"
-                  className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full shadow-sm hover:bg-gray-200 transition"
+                  to={userProfilePath}
+                  className={() =>
+                    `flex items-center gap-2 px-3 py-1.5 rounded-full shadow-sm transition ${isUserRouteActive
+                      ? "bg-blue-400 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-blue-400"
+                    }`
+                  }
                 >
                   <img
-                    src={userImage}
+                    src={userImageSrc}
                     alt="User avatar"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = defaultUserImage;
+                    }}
                     className="w-8 h-8 rounded-full object-cover border border-gray-300"
                   />
-                  <span className="font-medium text-gray-700">{user.Fullname}</span>
+                  <span className="font-medium">{user.Fullname}</span>
                 </NavLink>
 
                 {/* Nút Đăng xuất */}

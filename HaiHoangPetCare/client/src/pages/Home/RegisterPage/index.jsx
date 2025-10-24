@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../API/api";
+import {
+  XCircleIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/solid";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -10,10 +15,10 @@ export default function RegisterPage() {
     Password: "",
     Phone: "",
     Birthday: "",
-    Role: "KH", 
+    Role: "KH",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [alert, setAlert] = useState({ type: "", message: "" });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,21 +26,105 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setAlert({ type: "", message: "" });
 
-    if (form.Password !== confirmPassword) {
-      setError("Mật khẩu xác nhận không khớp!");
-      return;
+    // Kiểm tra nhập đầy đủ thông tin
+    if (
+      !form.Fullname ||
+      !form.Email ||
+      !form.Password ||
+      !form.Phone ||
+      !form.Birthday
+    ) {
+      return setAlert({
+        type: "warning",
+        message: "Vui lòng nhập đầy đủ tất cả thông tin!",
+      });
     }
 
+    // Kiểm tra độ mạnh mật khẩu
+    const pwd = form.Password || "";
+
+    if (pwd.length < 8) {
+      return setAlert({
+        type: "error",
+        message: "Mật khẩu chưa đủ 8 ký tự.",
+      });
+    }
+    if (!/[A-Z]/.test(pwd)) {
+      return setAlert({
+        type: "error",
+        message: "Mật khẩu phải có ít nhất 1 chữ cái in hoa.",
+      });
+    }
+    if (!/\d/.test(pwd)) {
+      return setAlert({
+        type: "error",
+        message: "Mật khẩu phải có ít nhất 1 chữ số.",
+      });
+    }
+    if (!/[^A-Za-z0-9]/.test(pwd)) {
+      return setAlert({
+        type: "error",
+        message: "Mật khẩu phải có ít nhất 1 ký tự đặc biệt.",
+      });
+    }
+
+    // Kiểm tra khớp mật khẩu
+    if (form.Password !== confirmPassword) {
+      return setAlert({
+        type: "error",
+        message: "Mật khẩu xác nhận không khớp!",
+      });
+    }
+
+    // hợp lệ → gửi API
     try {
       await api.post("/USER", form);
-      // alert("Đăng ký thành công! Vui lòng đăng nhập.");
-      navigate("/dang-nhap");
+      setAlert({
+        type: "success",
+        message: "Đăng ký thành công! Vui lòng đăng nhập.",
+      });
+
+      // Chờ 1.2s rồi chuyển sang trang đăng nhập
+      setTimeout(() => navigate("/dang-nhap"), 1200);
     } catch (err) {
       console.error(err);
-      setError("Đăng ký thất bại. Vui lòng thử lại!");
+      setAlert({
+        type: "warning",
+        message: "Đăng ký thất bại. Vui lòng thử lại!",
+      });
     }
+  };
+
+  // Component hiển thị alert
+  const renderAlert = () => {
+    if (!alert.message) return null;
+
+    const styles = {
+      success:
+        "bg-green-50 text-green-800 border border-green-300 dark:bg-gray-800 dark:text-green-400",
+      error:
+        "bg-red-50 text-red-800 border border-red-300 dark:bg-gray-800 dark:text-red-400",
+      warning:
+        "bg-yellow-50 text-yellow-800 border border-yellow-300 dark:bg-gray-800 dark:text-yellow-300",
+    };
+
+    const icons = {
+      success: <CheckCircleIcon className="w-5 h-5 mr-2" />,
+      error: <XCircleIcon className="w-5 h-5 mr-2" />,
+      warning: <ExclamationTriangleIcon className="w-5 h-5 mr-2" />,
+    };
+
+    return (
+      <div
+        className={`flex items-center p-4 mb-4 text-sm rounded-lg ${styles[alert.type]}`}
+        role="alert"
+      >
+        {icons[alert.type]}
+        <span className="font-medium">{alert.message}</span>
+      </div>
+    );
   };
 
   return (
@@ -50,6 +139,8 @@ export default function RegisterPage() {
             <span className="font-bold text-blue-500">HaiHoanPetCare</span> 🐾
           </p>
         </div>
+
+        {renderAlert()}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -123,6 +214,7 @@ export default function RegisterPage() {
               value={form.Phone}
               onChange={handleChange}
               placeholder="Nhập số điện thoại..."
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
           </div>
@@ -136,11 +228,10 @@ export default function RegisterPage() {
               name="Birthday"
               value={form.Birthday}
               onChange={handleChange}
+              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
           </div>
-
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
           <button
             type="submit"

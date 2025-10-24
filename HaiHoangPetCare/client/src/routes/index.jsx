@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 
-import { Route } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 // trang chính
 import Home from "../pages/Home";
 import HomePage from "../pages/Home/HomePage";
@@ -51,7 +51,11 @@ const routes = [
                 element: RegisterPage,
             },
             {
-                path: "nguoi-dung",
+                path: "nguoi-dung",              
+                element: RedirectToUser,
+            },
+            {
+                path: "nguoi-dung/:fullname",   
                 element: UserPage,
             },
 
@@ -92,6 +96,28 @@ function AdminRouteWrapper(Component) {
     };
 }
 
+// chỉnh tên đường dẫn ko dấu + space = "-"
+function toSlug(s) {
+    return (s || "")
+        .toString()
+        .normalize("NFD")                       // tách dấu
+        .replace(/[\u0300-\u036f]/g, "")        // bỏ dấu
+        .replace(/[^a-zA-Z0-9\s-]/g, "")        // bỏ ký tự đặc biệt
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-")                   
+        .replace(/-+/g, "-");                   
+}
+// hiện tên người dùng trong đường dẫn
+function RedirectToUser() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return <Navigate to="/dang-nhap" replace />;
+    const fullname = user.Fullname || user.FullName || "";
+    const slug = toSlug(fullname);
+    return <Navigate to={`/nguoi-dung/${slug}`} replace />;
+}
+
+// hàm tạo routes
 export const generateRoutes = () => {
     return routes.map((route) => {
         if (route.nested) {
