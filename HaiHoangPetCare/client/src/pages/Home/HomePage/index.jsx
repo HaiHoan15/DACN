@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../_Components/Banner";
+import Banner from "./Banner";
 export default function HomePage() {
   return (      
     <div>

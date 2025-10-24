@@ -12,6 +12,7 @@ import NewsPage from "../pages/Home/NewsPage";
 import LoginPage from "../pages/Home/LoginPage";
 import RegisterPage from "../pages/Home/RegisterPage";
 import UserPage from "../pages/Home/UserPage";
+import ServicePage from "../pages/Home/ServicePage";
 
 //trang quản lý
 import Admin from "../pages/Admin";
@@ -57,6 +58,10 @@ const routes = [
             {
                 path: "nguoi-dung/:fullname",   
                 element: UserPage,
+            },
+            {
+                path: "dich-vu",   
+                element: ServicePage,
             },
 
         ],

@@ -12,6 +12,7 @@ export default function Header() {
   const navItems = [
     { name: "Trang chủ", path: "/" },
     { name: "Giới thiệu", path: "./gioi-thieu" },
+    { name: "Dịch vụ", path: "./dich-vu" },
     { name: "Sản phẩm", path: "./san-pham" },
     { name: "Tư vấn", path: "./tu-van" },
     { name: "Tin tức", path: "./tin-tuc" },
@@ -50,7 +51,7 @@ export default function Header() {
           <img
             src="/images/logo.png"
             alt="HaiHoanPetCare Logo"
-            className="w-10 h-10 object-contain"
+            className="w-12 h-12 object-contain"
           />
           <NavLink
             to="/"

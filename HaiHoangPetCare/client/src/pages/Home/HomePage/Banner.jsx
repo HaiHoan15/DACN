@@ -35,7 +35,7 @@ export default function Banner() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 animate__animated animate__fadeInUp animate__delay-1.5s">
-          <NavLink to={"/"}
+          <NavLink to={"/dich-vu"}
             onClick={handleExploreClick}
             className="px-8 py-3 bg-[#DD6B20] text-white font-semibold rounded-full shadow-md hover:bg-[#c45d1b] hover:shadow-lg transition duration-300"
           >

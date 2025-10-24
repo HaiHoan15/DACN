@@ -41,7 +41,7 @@ export default function AboutCarousel() {
                         </ul>
 
                         <NavLink
-                            to="/"
+                            to="/dich-vu"
                             className="mt-4 inline-flex items-center justify-center px-8 py-3 text-white font-semibold rounded-full bg-gradient-to-r from-blue-600 to-orange-400 shadow-md hover:shadow-xl hover:scale-105 hover:-translate-y-1 transform transition duration-300 ease-out focus:outline-none focus:ring-4 focus:ring-orange-200 animate__animated animate__fadeInUp animate__delay-1.75s"
                         >
                             BẮT ĐẦU NGAY

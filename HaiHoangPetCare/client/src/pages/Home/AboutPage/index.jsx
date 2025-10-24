@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "../_Components/AboutCarousel";
+import Carousel from "./Carousel";
 export default function AboutPage() {
   return (      
     <div>
