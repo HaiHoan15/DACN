@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import WOW from "wowjs";
-import "animate.css";
+
 
 export default function AboutCarousel() {
-    useEffect(() => {
-        new WOW.WOW({ live: false }).init();
-    }, []);
-
     return (
-        <section className="py-12 md:py-8 bg-white overflow-hidden"style={{ backgroundImage: "url('/images/bg2.png')" }}  >
+        <section className="py-12 md:py-8 bg-white overflow-hidden" style={{ backgroundImage: "url('/images/background/bg2.png')" }}  >
             <div className="container mx-auto px-6 md:px-16">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
                     {/* Bên trái */}
@@ -53,7 +48,7 @@ export default function AboutCarousel() {
                         <div className="relative">
                             <div className="absolute inset-0 bg-gradient-to-tr from-orange-400 to-blue-500 rounded-[30px] blur-2xl opacity-70"></div>
                             <img
-                                src="/images/intro-man2.png"
+                                src="/images/intro-man/intro-man2.png"
                                 alt="Bác sĩ thú cưng"
                                 className="relative rounded-[30px] w-[300px] md:w-[420px] object-cover"
                             />

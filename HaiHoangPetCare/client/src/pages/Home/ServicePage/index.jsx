@@ -13,34 +13,34 @@ export default function ServicePage() {
       title: "Khám bệnh",
       desc: "Theo dõi sức khỏe và đặt lịch khám trực tuyến cho thú cưng với đội ngũ bác sĩ tận tâm.",
       image:
-        "/public/images/into-man3.png",
+        "/public/images/intro-man/into-man3.png",
       path: "/nguoi-dung",
     },
     {
       title: "Sản phẩm",
       desc: "Mua sắm các phụ kiện, thức ăn và đồ chơi thú cưng của bạn với hàng chính hãng kèm theo giá ưu đãi.",
       image:
-        "/public/images/pet-products.jpg",
+        "/public/images/another/pet-products.jpg",
       path: "/san-pham",
     },
     {
       title: "Tư vấn",
       desc: "Trò chuyện với AI Chatbot hoặc bác sĩ để nhận tư vấn chăm sóc phù hợp cho thú cưng.",
       image:
-        "/public/images/chatbot.jpg",
+        "/public/images/another/chatbot.jpg",
       path: "/tu-van",
     },
     {
       title: "Tin tức",
       desc: "Cập nhật mẹo chăm sóc, bài viết và xu hướng nuôi thú cưng của bạn mới nhất mỗi ngày.",
       image:
-        "/public/images/news.jpg",
+        "/public/images/another/news.jpg",
       path: "/tin-tuc",
     },
   ];
 
   return (
-    <section style={{ backgroundImage: "url('/images/bg6.png')" }} className="py-10 bg-gray-50 min-h-screen">
+    <section style={{ backgroundImage: "url('/images/background/krypton-bg.jpg')" }} className="py-10 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-6 md:px-12">
         {/* Tiêu đề */}
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#2563EB] text-center mb-12 animate__animated animate__fadeInDown">

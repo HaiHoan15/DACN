@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../API/api";
-import { XCircleIcon, CheckCircleIcon, ExclamationTriangleIcon } from "@heroicons/react/24/solid";
+import Notification from "../_Components/Notification";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function LoginPage() {
         return setAlert({ type: "error", message: "Sai mật khẩu!" });
 
       localStorage.setItem("user", JSON.stringify(user));
-      setAlert({ type: "success", message: "Đăng nhập thành công!" });
+      setAlert({ type: "success", message: "Đăng nhập thành công! Đang chuyển trang...." });
 
       setTimeout(() => {
         if (user.Role === "BS") navigate("/admin");
@@ -39,36 +39,6 @@ export default function LoginPage() {
         message: "Lỗi đăng nhập, vui lòng thử lại!",
       });
     }
-  };
-
-  // Component hiển thị thông báo 
-  const renderAlert = () => {
-    if (!alert.message) return null;
-
-    const styles = {
-      success:
-        "bg-green-50 text-green-800 border border-green-300 dark:bg-gray-800 dark:text-green-400",
-      error:
-        "bg-red-50 text-red-800 border border-red-300 dark:bg-gray-800 dark:text-red-400",
-      warning:
-        "bg-yellow-50 text-yellow-800 border border-yellow-300 dark:bg-gray-800 dark:text-yellow-300",
-    };
-
-    const icons = {
-      success: <CheckCircleIcon className="w-5 h-5 mr-2" />,
-      error: <XCircleIcon className="w-5 h-5 mr-2" />,
-      warning: <ExclamationTriangleIcon className="w-5 h-5 mr-2" />,
-    };
-
-    return (
-      <div
-        className={`flex items-center p-4 mb-4 text-sm rounded-lg ${styles[alert.type]}`}
-        role="alert"
-      >
-        {icons[alert.type]}
-        <span className="font-medium">{alert.message}</span>
-      </div>
-    );
   };
 
   return (
@@ -84,7 +54,8 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {renderAlert()}
+        {/* Gọi component Notification dùng chung */}
+        <Notification type={alert.type} message={alert.message} />
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

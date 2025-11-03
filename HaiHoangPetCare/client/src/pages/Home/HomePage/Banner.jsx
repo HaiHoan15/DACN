@@ -10,7 +10,7 @@ export default function Banner() {
   return (
     <section
       className="relative w-full h-[90vh] flex items-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/background2.jpg')" }} 
+      style={{ backgroundImage: "url('/images/background/background2.jpg')" }} 
     >
       {/* Overlay gradient mờ */}
       {/* <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB]/90 via-[#2563EB]/70 to-transparent"></div> */}

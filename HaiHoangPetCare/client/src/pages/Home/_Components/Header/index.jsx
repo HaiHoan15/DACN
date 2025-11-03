@@ -53,12 +53,12 @@ export default function Header() {
             alt="HaiHoanPetCare Logo"
             className="w-12 h-12 object-contain"
           />
-          <NavLink
-            to="/"
+          <a
+            href="/"
             className="text-2xl font-bold text-blue-600 hover:text-blue-800 transition-colors"
           >
             HaiHoan<span className="text-orange-500 ">PetCare</span>
-          </NavLink>
+          </a>
         </div>
 
         {/* Menu chính */}

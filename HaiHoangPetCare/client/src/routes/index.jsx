@@ -13,6 +13,7 @@ import LoginPage from "../pages/Home/LoginPage";
 import RegisterPage from "../pages/Home/RegisterPage";
 import UserPage from "../pages/Home/UserPage";
 import ServicePage from "../pages/Home/ServicePage";
+import ProductDetailPage from "../pages/Home/ProductDetailPage";
 
 //trang quản lý
 import Admin from "../pages/Admin";
@@ -34,6 +35,10 @@ const routes = [
             {
                 path: "san-pham",
                 element: ProductPage,
+            },
+            {
+                path: "san-pham/:id",
+                element: ProductDetailPage,
             },
             {
                 path: "tu-van",
