@@ -15,6 +15,12 @@ import UserPage from "../pages/Home/UserPage";
 import ServicePage from "../pages/Home/ServicePage";
 import ProductDetailPage from "../pages/Home/ProductDetailPage";
 
+// trang giành cho user
+// import Pet from "../pages/Home/UserPage/PageFromUser/Pet";
+// import Schedule from "../pages/Home/UserPage/PageFromUser/Schedule";
+// import Wishlist from "../pages/Home/UserPage/PageFromUser/Wishlist";
+// import Order from "../pages/Home/UserPage/PageFromUser/Order";
+
 //trang quản lý
 import Admin from "../pages/Admin";
 import AdminPage from "../pages/Admin/AdminPage";
@@ -57,15 +63,15 @@ const routes = [
                 element: RegisterPage,
             },
             {
-                path: "nguoi-dung",              
+                path: "nguoi-dung",
                 element: RedirectToUser,
             },
             {
-                path: "nguoi-dung/:fullname",   
+                path: "nguoi-dung/:fullname",
                 element: UserPage,
             },
             {
-                path: "dich-vu",   
+                path: "dich-vu",
                 element: ServicePage,
             },
 
@@ -115,8 +121,8 @@ function toSlug(s) {
         .replace(/[^a-zA-Z0-9\s-]/g, "")        // bỏ ký tự đặc biệt
         .trim()
         .toLowerCase()
-        .replace(/\s+/g, "-")                   
-        .replace(/-+/g, "-");                   
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
 }
 // hiện tên người dùng trong đường dẫn
 function RedirectToUser() {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import api from "../../../API/api";
+import Loading from "../_Components/Loading";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -9,31 +10,28 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  const fetchProduct = async () => {
-    try {
-      // Gọi API với query param
-      const res = await api.get("/products", {
-        params: { Product_ID: id },
-      });
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await api.get("/PRODUCT", {
+          params: { Product_ID: Number(id) },
+        });
 
-      console.log("Kết quả API:", res.data);
+        console.log("Kết quả API:", res.status, res.data);
+        const productData = Array.isArray(res.data) ? res.data[0] : res.data;
+        setProduct(productData);
+      } catch (error) {
+        console.error("Không thể tải sản phẩm:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      // Trường hợp backend trả về mảng (thường gặp)
-      const productData = Array.isArray(res.data) ? res.data[0] : res.data;
-      setProduct(productData);
-    } catch (error) {
-      console.error("Không thể tải sản phẩm:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchProduct();
-}, [id]);
+    fetchProduct();
+  }, [id]);
 
 
-  if (loading) return <p>Đang tải...</p>;
+  if (loading) return <Loading />;
   if (!product) return <p>Không tìm thấy sản phẩm</p>;
 
   const handleBuy = () => {
@@ -41,7 +39,7 @@ useEffect(() => {
     if (!isLoggedIn) {
       navigate("/dang-nhap");
     } else {
-      navigate("/san-pham"); 
+      navigate("/san-pham");
     }
   };
 
