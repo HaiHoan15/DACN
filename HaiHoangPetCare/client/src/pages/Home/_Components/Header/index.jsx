@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 // import {useNavigate} from "react-router-dom";
 import CheckBox from "../CheckBox";
+import NotificationBell from "../NotificationBell";
 export default function Header() {
 
   const location = useLocation();
@@ -114,7 +115,10 @@ export default function Header() {
                   />
                   <span className="font-medium">{user.Fullname}</span>
                 </NavLink>
+                
                 <CheckBox />
+
+                <NotificationBell />
               </div>
             </>
           )}

@@ -47,7 +47,6 @@ export default function ProductDetailPage() {
       navigate("/dang-nhap");
       return;
     }
-
     try {
       const res = await api.post(
         "wishlist.php",
@@ -61,7 +60,7 @@ export default function ProductDetailPage() {
 
       if (res.data.success) {
         setAlert({ type: "success", message: res.data.message });
-        setTimeout(() => window.location.reload(), 750);
+        setTimeout(() => navigate("/san-pham"), 1000);
       } else {
         setAlert({ type: "warning", message: res.data.message });
       }

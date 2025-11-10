@@ -18,10 +18,30 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [alert, setAlert] = useState({ type: "", message: "" });
   const [preview, setPreview] = useState(null);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
+  //  Cập nhật input
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Giới hạn ký tự cho Fullname
+    if (name === "Fullname") {
+      const invalidChars = /[^a-zA-ZÀ-ỹ\s]/g; // cho phép tiếng Việt có dấu + khoảng trắng
+      if (invalidChars.test(value)) {
+        return setAlert({
+          type: "warning",
+          message: "Họ tên không được chứa ký tự đặc biệt!",
+        });
+      }
+      if (value.length > 30) {
+        return setAlert({
+          type: "warning",
+          message: "Họ tên không được vượt quá 30 ký tự!",
+        });
+      }
+    }
+
+    setForm({ ...form, [name]: value });
   };
 
   // Nén ảnh trước khi upload
@@ -60,10 +80,12 @@ export default function RegisterPage() {
     }
   };
 
+  //  Gửi dữ liệu đăng ký
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAlert({ type: "", message: "" });
 
+    // Kiểm tra rỗng
     if (
       !form.Fullname ||
       !form.Email ||
@@ -78,6 +100,22 @@ export default function RegisterPage() {
       });
     }
 
+    //  Kiểm tra độ dài & ký tự đặc biệt của tên
+    if (form.Fullname.length > 30) {
+      return setAlert({
+        type: "error",
+        message: "Tên không được vượt quá 30 ký tự!",
+      });
+    }
+
+    if (/[^a-zA-ZÀ-ỹ\s]/.test(form.Fullname)) {
+      return setAlert({
+        type: "error",
+        message: "Tên không được chứa ký tự đặc biệt!",
+      });
+    }
+
+    //  Kiểm tra mật khẩu
     const pwd = form.Password;
     if (pwd.length < 8)
       return setAlert({
@@ -106,25 +144,37 @@ export default function RegisterPage() {
       });
 
     try {
-      setLoading(true); 
-      await api.post("/USER", form);
-      setAlert({
-        type: "success",
-        message: "Đăng ký thành công! Vui lòng đăng nhập...",
+      setLoading(true);
+
+      //  Gửi lên backend (đường dẫn PHP)
+      const res = await api.post("register.php", form, {
+        headers: { "Content-Type": "application/json" },
       });
 
-      setTimeout(() => navigate("/dang-nhap"), 1200);
+      if (res.data.success) {
+        setAlert({
+          type: "success",
+          message: "Đăng ký thành công! Vui lòng đăng nhập...",
+        });
+        setTimeout(() => navigate("/dang-nhap"), 1200);
+      } else {
+        setAlert({
+          type: "warning",
+          message: res.data.message || "Đăng ký thất bại. Vui lòng thử lại!",
+        });
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Lỗi đăng ký:", err);
       setAlert({
-        type: "warning",
-        message: "Đăng ký thất bại. Vui lòng thử lại!",
+        type: "error",
+        message: "Không thể kết nối đến máy chủ. Vui lòng thử lại!",
       });
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
+  //  Giao diện
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-cyan-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-4xl">
@@ -157,6 +207,9 @@ export default function RegisterPage() {
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
+              {/* <p className="text-xs text-gray-500 mt-1">
+                <b>Lưu ý:</b> Tên chỉ <b>TỐI ĐA</b> 30 ký tự.
+              </p> */}
             </div>
 
             <div>
@@ -244,7 +297,7 @@ export default function RegisterPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Thêm hình ảnh đại diện (nếu cần)
+                Ảnh đại diện (tùy chọn)
               </label>
               <input
                 type="file"

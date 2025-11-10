@@ -173,7 +173,7 @@ export default function Profile() {
         headers: { "Content-Type": "application/json" },
       });
 
-      // 🟢 Phân loại lỗi từ backend
+      // Phân loại lỗi từ backend
       if (!res.data.success) {
         if (res.data.message?.toLowerCase().includes("mật khẩu")) {
           setPasswordError(res.data.message); // lỗi mật khẩu hiển thị ở dưới
@@ -252,7 +252,11 @@ export default function Profile() {
                 {inputErrors.Fullname}
               </p>
             )}
+            <p className="text-xs text-gray-500 mt-1">
+              <b>Lưu ý:</b> Tên chỉ được <b>TỐI ĐA</b> 30 ký tự.
+            </p>
           </div>
+          
           <div>
             <label className="block text-sm font-semibold mb-1">Email</label>
             <input
