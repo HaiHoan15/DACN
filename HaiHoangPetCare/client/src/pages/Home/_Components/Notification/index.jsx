@@ -1,3 +1,4 @@
+// mẫu thông báo
 import React from "react";
 import {
   XCircleIcon,

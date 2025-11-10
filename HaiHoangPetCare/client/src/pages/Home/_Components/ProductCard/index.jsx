@@ -1,18 +1,20 @@
+//thẻ sản phẩm
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("user");
 
-  const handleBuy = (e) => {
-    e.stopPropagation();
-    if (!isLoggedIn) {
-      navigate("/dang-nhap");
-    } else {
-      navigate("/san-pham");
-    }
-  };
+  // kiểm tra đăng nhập cho thẻ sản phẩm
+  // const isLoggedIn = localStorage.getItem("user");
+  // const handleBuy = (e) => {
+  //   e.stopPropagation();
+  //   if (!isLoggedIn) {
+  //     navigate("/dang-nhap");
+  //   } else {
+  //     navigate("/san-pham");
+  //   }
+  // };
 
   const handleDetail = () => {
     navigate(`/san-pham/${product.id || product.Product_ID}`);
@@ -39,16 +41,16 @@ const ProductCard = ({ product }) => {
           {product.ProductName}
         </h3>
         {/* Mô tả sản phẩm */}
-        <p className="text-gray-500 text-sm mt-1 line-clamp-2 min-h-[2.5rem]">
-          {product.Description || "Sản phẩm chăm sóc thú cưng chất lượng cao."}
+        <p className="text-gray-500 text-sm mt-1 line-clamp-2 min-h-[1rem]">
+          Thể loại: {product.Category || "Không xác định!"}
         </p>
         {/* Giá và nút mua ngay */}
-        <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center justify-between ">
           <p className="text-lg font-semibold text-orange-600">
             {Number(product.Price).toLocaleString("vi-VN")}đ
           </p>
           <button
-            onClick={handleBuy}
+            onClick={handleDetail}
             className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
           >
             Mua ngay

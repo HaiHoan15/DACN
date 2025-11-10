@@ -22,17 +22,12 @@ export default function Dashboard({ activeTab, onSelectTab }) {
         setUser(userData);
         setLoading(false);
 
-        const res = await api.get("/USER", {
-          params: { User_ID: userData.User_ID },
+        const res = await api.get("get_user_by_id.php", {
+          params: { id: userData.User_ID },
         });
-        const latestUser =
-          Array.isArray(res.data) && res.data.length > 0
-            ? res.data[0]
-            : res.data;
-
-        if (latestUser && latestUser.Fullname !== userData.Fullname) {
-          setUser(latestUser);
-          localStorage.setItem("user", JSON.stringify(latestUser));
+        if (res.data && res.data.Fullname) {
+          setUser(res.data);
+          localStorage.setItem("user", JSON.stringify(res.data));
         }
       } catch (err) {
         console.error("Lỗi khi lấy dữ liệu user:", err);
@@ -48,28 +43,31 @@ export default function Dashboard({ activeTab, onSelectTab }) {
   if (!user) return <div>Không tìm thấy thông tin người dùng</div>;
 
   return (
-    <div className="w-64 h-screen bg-white border-r flex flex-col items-center py-6">
+    <div className="w-64 h-screen bg-white border-r flex flex-col items-start py-6">
       {/* Avatar + Name */}
-      <div className="flex flex-col mb-6">
-        <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-200 mb-3">
+      <div className="flex flex-col mb-6 px-8">
+        <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-200 mb-3 flex items-center justify-center">
           {user?.UserPicture ? (
             <img
               src={user.UserPicture}
               alt="Avatar"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "/images/user.png"; // ảnh mặc định khi lỗi
+                e.target.src = "/images/user.png";
               }}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200">
-              <i className="fa-solid fa-user text-gray-400 text-4xl"></i>
-            </div>
+            <i className="fa-solid fa-user text-gray-400 text-4xl"></i>
           )}
         </div>
-        <h2 className="text-lg font-semibold">{user?.Fullname || "Không xác định"}</h2>
-        <p className="text-sm text-gray-500">{user?.Email}</p>
+
+        <h2 className="text-lg font-semibold break-words max-w-[10rem]">
+          {user?.Fullname || "Không xác định"}
+        </h2>
+        <p className="text-sm text-gray-500 break-words max-w-[10rem]">
+          {user?.Email}
+        </p>
       </div>
 
       {/* Menu */}
@@ -84,6 +82,7 @@ export default function Dashboard({ activeTab, onSelectTab }) {
           </span>
           <span>Hồ sơ</span>
         </button>
+
         <button
           onClick={() => onSelectTab("pet")}
           className={`flex items-center gap-3 text-left hover:text-blue-600 ${activeTab === "pet" ? "text-blue-600 font-semibold" : ""
@@ -128,7 +127,7 @@ export default function Dashboard({ activeTab, onSelectTab }) {
           <span>Đơn hàng</span>
         </button>
       </nav>
-
     </div>
+
   );
 }

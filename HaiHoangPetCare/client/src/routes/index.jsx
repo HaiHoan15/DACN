@@ -15,15 +15,11 @@ import UserPage from "../pages/Home/UserPage";
 import ServicePage from "../pages/Home/ServicePage";
 import ProductDetailPage from "../pages/Home/ProductDetailPage";
 
-// trang giành cho user
-// import Pet from "../pages/Home/UserPage/PageFromUser/Pet";
-// import Schedule from "../pages/Home/UserPage/PageFromUser/Schedule";
-// import Wishlist from "../pages/Home/UserPage/PageFromUser/Wishlist";
-// import Order from "../pages/Home/UserPage/PageFromUser/Order";
-
 //trang quản lý
 import Admin from "../pages/Admin";
 import AdminPage from "../pages/Admin/AdminPage";
+import ProductManagement from "../pages/Admin/ProductManagement";
+import UserManagement from "../pages/Admin/UserManagement";
 
 const routes = [
     {
@@ -84,6 +80,14 @@ const routes = [
             {
                 index: true,
                 element: AdminPage,
+            },
+            {
+                path: "quan-ly-san-pham",
+                element: ProductManagement,
+            },
+            {
+                path: "quan-ly-nguoi-dung",
+                element: UserManagement,
             },
         ],
     },

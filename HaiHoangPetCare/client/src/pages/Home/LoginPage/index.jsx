@@ -17,19 +17,25 @@ export default function LoginPage() {
     setAlert({ type: "", message: "" });
 
     try {
-      const res = await api.get(`/USER?Email=${form.email}`);
-      const user = res.data[0];
+      const res = await api.post("login.php", form, {
+        headers: { "Content-Type": "application/json" },
+      });
 
-      if (!user)
-        return setAlert({ type: "error", message: "Email không tồn tại!" });
-      if (user.Password !== form.password)
-        return setAlert({ type: "error", message: "Sai mật khẩu!" });
+      const data = res.data;
 
-      localStorage.setItem("user", JSON.stringify(user));
-      setAlert({ type: "success", message: "Đăng nhập thành công! Đang chuyển trang...." });
+      if (!data.success) {
+        return setAlert({ type: "error", message: data.message });
+      }
+
+      // Lưu thông tin user vào localStorage
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setAlert({
+        type: "success",
+        message: "Đăng nhập thành công! Đang chuyển trang...",
+      });
 
       setTimeout(() => {
-        if (user.Role === "BS") navigate("/admin");
+        if (data.user.Role === "BS") navigate("/admin");
         else navigate("/");
       }, 1200);
     } catch (err) {

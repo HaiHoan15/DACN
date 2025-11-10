@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../../API/api";
 import ProductCard from "../_Components/ProductCard";
 import Loading from "../_Components/Loading";
+import Pagination from "../_Components/Pagination";
 import WOW from "wowjs";
 import "animate.css";
 
@@ -17,7 +18,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     api
-      .get("/PRODUCT")
+      .get("get_products.php")
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Lỗi khi lấy sản phẩm:", err));
   }, []);
@@ -34,7 +35,6 @@ export default function ProductPage() {
     startIndex,
     startIndex + itemsPerPage
   );
-
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -42,15 +42,18 @@ export default function ProductPage() {
     }
   };
 
+
   return (
     <div
       className="min-h-screen bg-gray-50 py-10"
-      style={{ backgroundImage: "url('/images/background/background.jpg')" }}
+      style={{ backgroundImage: "url('/images/background/product-bg2.jpg')" }}
     >
       <div className="max-w-screen-xl mx-auto px-4">
         {/* --- Tiêu đề + Thanh tìm kiếm --- */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10 gap-6 animate__animated animate__fadeInDown">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] text-center md:text-left tracking-tight">
+          <h2
+            className="inline-block bg-white/70 text-[#2563EB] text-2xl md:text-3xl font-bold px-6 py-2 rounded-2xl shadow-md backdrop-blur-sm"
+          >
             Các sản phẩm của chúng tôi
           </h2>
 
@@ -70,8 +73,15 @@ export default function ProductPage() {
           </div>
         </div>
 
+        {/* --- Thanh phân trang --- */}
+        <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+        />
+
         {/* --- Lưới sản phẩm --- */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate__animated animate__fadeInUp">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-7 animate__animated animate__fadeInUp">
           {displayedProducts.length > 0 ? (
             displayedProducts.map((p) => (
               <ProductCard key={p.Product_ID} product={p} />
@@ -84,50 +94,11 @@ export default function ProductPage() {
         </div>
 
         {/* --- Thanh phân trang --- */}
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-10">
-            {/* Nút Previous */}
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 rounded-lg border text-sm font-medium transition-colors ${
-                currentPage === 1
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white hover:bg-indigo-600 hover:text-white text-indigo-600 border-indigo-600"
-              }`}
-            >
-              « Trước
-            </button>
-
-            {/* Số trang */}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                className={`px-4 py-2 rounded-lg border text-sm font-medium transition-colors ${
-                  currentPage === page
-                    ? "bg-indigo-600 text-white border-indigo-600"
-                    : "bg-white text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-white"
-                }`}
-              >
-                {page}
-              </button>
-            ))}
-
-            {/* Nút Next */}
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded-lg border text-sm font-medium transition-colors ${
-                currentPage === totalPages
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white hover:bg-indigo-600 hover:text-white text-indigo-600 border-indigo-600"
-              }`}
-            >
-              Sau »
-            </button>
-          </div>
-        )}
+        <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

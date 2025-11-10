@@ -31,9 +31,10 @@ export default function UserPage() {
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <Dashboard activeTab={activeTab} onSelectTab={setActiveTab} />
-
       {/* Nội dung tab */}
-      <div className="flex-1 p-8">{renderContent()}</div>
+      <div className="flex-1 p-8" 
+      style={{ backgroundImage: "url('/images/background/user-profile-bg.jpg')" }}
+      >{renderContent()}</div>
     </div>
   );
 }

@@ -1,7 +1,8 @@
+//animation loading....
 import React from 'react';
 import styled from 'styled-components';
 
-const Loader = () => {
+const Loading = () => {
   return (
     <StyledWrapper>
       <section className="dots-container">
@@ -69,4 +70,4 @@ const StyledWrapper = styled.div`
     }
   }`;
 
-export default Loader;
+export default Loading;

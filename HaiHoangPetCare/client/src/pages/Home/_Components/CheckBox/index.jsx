@@ -1,3 +1,4 @@
+//ô chọn checkbox hiển thị menu người dùng
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -15,12 +16,13 @@ const Checkbox = () => {
         const localUser = JSON.parse(localStorage.getItem("user"));
         if (!localUser?.User_ID) return;
 
-        const res = await api.get("/USER", {
-          params: { User_ID: localUser.User_ID },
+        const res = await api.get("get_user_by_id.php", {
+          params: { id: localUser.User_ID },
         });
 
-        const userData = Array.isArray(res.data) ? res.data[0] : res.data;
-        setUser(userData);
+        if (res.data && res.data.Fullname) {
+          setUser(res.data);
+        }
       } catch (error) {
         console.error("Lỗi khi tải user:", error);
       }
