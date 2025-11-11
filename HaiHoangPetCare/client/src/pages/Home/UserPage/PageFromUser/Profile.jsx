@@ -217,25 +217,63 @@ export default function Profile() {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Thông tin cá nhân */}
         {/* Ảnh đại diện */}
-        <div className="mt-6">
-          <label className="block text-sm font-semibold mb-1">Ảnh đại diện</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="w-full border px-4 py-2 rounded-lg focus:ring focus:ring-blue-200"
-          />
-          {user.UserPicture ? (
-            <img
-              src={user.UserPicture}
-              alt="Avatar"
-              className="w-24 h-24 mt-3 rounded-full border object-cover"
-            />
-          ) : (
-            <div className="w-24 h-24 mt-3 rounded-full border bg-gray-100 flex items-center justify-center">
-              No image
+        <div className="flex flex-col items-center mb-6 pb-6 border-b">
+          <label className="text-sm font-semibold mb-3 text-gray-700">Ảnh đại diện</label>
+
+          <div className="relative group">
+            {/* Avatar hiển thị */}
+            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-200 group-hover:border-blue-400 transition-all shadow-lg">
+              {user.UserPicture ? (
+                <img
+                  src={user.UserPicture}
+                  alt="Avatar"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                  <span className="text-4xl text-gray-400">👤</span>
+                </div>
+              )}
             </div>
-          )}
+
+            {/* Nút upload overlay */}
+            <label
+              htmlFor="avatar-upload"
+              className="absolute bottom-0 right-0 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:bg-blue-600 transition-all transform hover:scale-110"
+            >
+              <svg
+                className="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </label>
+
+            <input
+              id="avatar-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
+
+          <p className="text-xs text-gray-500 mt-3 text-center max-w-xs">
+            Nhấn vào biểu tượng camera để thay đổi ảnh đại diện (tối đa 500KB)
+          </p>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
@@ -256,7 +294,7 @@ export default function Profile() {
               <b>Lưu ý:</b> Tên chỉ được <b>TỐI ĐA</b> 30 ký tự.
             </p>
           </div>
-          
+
           <div>
             <label className="block text-sm font-semibold mb-1">Email</label>
             <input
