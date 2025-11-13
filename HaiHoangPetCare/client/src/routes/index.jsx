@@ -7,19 +7,25 @@ import Home from "../pages/Home";
 import HomePage from "../pages/Home/HomePage";
 import AboutPage from "../pages/Home/AboutPage"
 import ProductPage from "../pages/Home/ProductPage";
+import ProductDetailPage from "../pages/Home/ProductDetailPage";
 import AdvisePage from "../pages/Home/AdvisePage";
 import NewsPage from "../pages/Home/NewsPage";
+import NewsDetailPage from "../pages/Home/NewsDetailPage";
 import LoginPage from "../pages/Home/LoginPage";
 import RegisterPage from "../pages/Home/RegisterPage";
 import UserPage from "../pages/Home/UserPage";
 import ServicePage from "../pages/Home/ServicePage";
-import ProductDetailPage from "../pages/Home/ProductDetailPage";
+
 
 //trang quản lý
 import Admin from "../pages/Admin";
 import AdminPage from "../pages/Admin/AdminPage";
 import ProductManagement from "../pages/Admin/ProductManagement";
 import UserManagement from "../pages/Admin/UserManagement";
+import OrderManagement from "../pages/Admin/OrderManagement";
+import ScheduleManagement from "../pages/Admin/ScheduleManagement";
+import PetManagement from "../pages/Admin/PetManagement";
+import NewsManagement from "../pages/Admin/NewsManagement";
 
 const routes = [
     {
@@ -49,6 +55,10 @@ const routes = [
             {
                 path: "tin-tuc",
                 element: NewsPage,
+            },
+            {
+                path: "tin-tuc/:id",
+                element: NewsDetailPage,
             },
             {
                 path: "dang-nhap",
@@ -88,6 +98,22 @@ const routes = [
             {
                 path: "quan-ly-nguoi-dung",
                 element: UserManagement,
+            },
+            {
+                path: "quan-ly-don-hang",
+                element: OrderManagement,
+            },
+            {
+                path: "quan-ly-lich-kham",
+                element: ScheduleManagement,
+            },
+            {
+                path: "quan-ly-thu-cung",
+                element: PetManagement,
+            },
+            {
+                path: "quan-ly-tin-tuc",
+                element: NewsManagement,
             },
         ],
     },

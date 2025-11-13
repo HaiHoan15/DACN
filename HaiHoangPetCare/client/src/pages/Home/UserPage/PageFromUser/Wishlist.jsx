@@ -12,6 +12,14 @@ export default function Wishlist() {
   const itemsPerPage = 5; //  mỗi trang 5 sản phẩm
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [orderInfo, setOrderInfo] = useState({
+    fullname: user?.Fullname || "",
+    email: user?.Email || "",
+    shippingAddress: user?.Address || "",
+    phone: user?.Phone || "",
+    note: ""
+  });
 
   //  Lấy danh sách wishlist
   useEffect(() => {
@@ -97,6 +105,65 @@ export default function Wishlist() {
   const handlePageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Xử lý đặt hàng
+  const handlePlaceOrder = async () => {
+    if (!orderInfo.shippingAddress || !orderInfo.phone || !orderInfo.fullname) {
+      setAlert({ type: "error", message: "Vui lòng điền đầy đủ thông tin bắt buộc!" });
+      return;
+    }
+
+    try {
+      const orderData = {
+        user_id: user.User_ID,
+        total_amount: total,
+        shipping_address: orderInfo.shippingAddress,
+        phone: orderInfo.phone,
+        note: orderInfo.note,
+        items: wishlist.map(item => ({
+          product_id: item.Product_ID,
+          product_name: item.ProductName,
+          price: item.Price,
+          quantity: item.Quantity
+        }))
+      };
+
+      const res = await api.post("create_order.php", orderData, {
+        headers: { "Content-Type": "application/json" }
+      });
+
+      if (res.data.success) {
+        setAlert({ type: "success", message: "Đặt hàng thành công!" });
+        setShowCheckoutModal(false);
+        
+        // Xóa toàn bộ wishlist sau khi đặt hàng
+        for (const item of wishlist) {
+          await api.post("delete_wishlist.php", { Wishlist_ID: item.Wishlist_ID }, {
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+        
+        setWishlist([]);
+        setOrderInfo({ 
+          fullname: user?.Fullname || "",
+          email: user?.Email || "",
+          shippingAddress: user?.Address || "",
+          phone: user?.Phone || "",
+          note: "" 
+        });
+        
+        // Chuyển đến trang đơn hàng sau 1.5s
+        setTimeout(() => {
+          navigate("/nguoi-dung?tab=order");
+        }, 1500);
+      } else {
+        setAlert({ type: "error", message: res.data.message || "Đặt hàng thất bại!" });
+      }
+    } catch (err) {
+      console.error("Lỗi đặt hàng:", err);
+      setAlert({ type: "error", message: "Có lỗi xảy ra khi đặt hàng!" });
+    }
   };
 
   if (loading) return <Loading />;
@@ -190,11 +257,113 @@ export default function Wishlist() {
               </p>
 
               <button
-                disabled
-                className="bg-gray-400 text-white py-2 px-6 rounded-lg font-semibold cursor-not-allowed"
+                onClick={() => setShowCheckoutModal(true)}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
               >
                 Xác nhận mua
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* Modal xác nhận đặt hàng */}
+        {showCheckoutModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <h3 className="text-2xl font-bold mb-6 text-blue-600">Thông tin đặt hàng</h3>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2">
+                    Họ và tên <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={orderInfo.fullname}
+                    onChange={(e) => setOrderInfo({...orderInfo, fullname: e.target.value})}
+                    className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Nhập họ và tên"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={orderInfo.email}
+                    onChange={(e) => setOrderInfo({...orderInfo, email: e.target.value})}
+                    className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                    placeholder="Email"
+                    readOnly
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2">
+                    Số điện thoại <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    value={orderInfo.phone}
+                    onChange={(e) => setOrderInfo({...orderInfo, phone: e.target.value})}
+                    className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Nhập số điện thoại"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2">
+                    Địa chỉ giao hàng <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    value={orderInfo.shippingAddress}
+                    onChange={(e) => setOrderInfo({...orderInfo, shippingAddress: e.target.value})}
+                    className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="3"
+                    placeholder="Nhập địa chỉ giao hàng"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-semibold mb-2">Ghi chú</label>
+                  <textarea
+                    value={orderInfo.note}
+                    onChange={(e) => setOrderInfo({...orderInfo, note: e.target.value})}
+                    className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="2"
+                    placeholder="Ghi chú cho đơn hàng (tùy chọn)"
+                  />
+                </div>
+
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <p className="text-gray-700 font-semibold">
+                    Tổng thanh toán: 
+                    <span className="text-orange-600 ml-2 text-xl font-bold">
+                      {total.toLocaleString("vi-VN")} VND
+                    </span>
+                  </p>
+                  <p className="text-gray-600 text-sm mt-2">
+                    Phương thức thanh toán: <span className="font-semibold">COD (Thanh toán khi nhận hàng)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  onClick={() => setShowCheckoutModal(false)}
+                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-semibold hover:bg-gray-400 transition"
+                >
+                  Hủy
+                </button>
+                <button
+                  onClick={handlePlaceOrder}
+                  className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition"
+                >
+                  Đặt hàng
+                </button>
+              </div>
             </div>
           </div>
         )}

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Dashboard from "./DashBoard/Dashboard";
 import Profile from "./PageFromUser/Profile";
 import Pet from "./PageFromUser/Pet";
@@ -7,7 +8,16 @@ import Wishlist from "./PageFromUser/Wishlist";
 import Order from "./PageFromUser/Order";
 
 export default function UserPage() {
-  const [activeTab, setActiveTab] = useState("profile"); // tab mặc định);
+  const [searchParams] = useSearchParams();
+  const tabFromUrl = searchParams.get("tab");
+  const [activeTab, setActiveTab] = useState(tabFromUrl || "profile");
+
+  // Cập nhật activeTab khi URL thay đổi
+  useEffect(() => {
+    if (tabFromUrl) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [tabFromUrl]);
 
   // Hàm hiển thị component tương ứng
   const renderContent = () => {
@@ -18,6 +28,7 @@ export default function UserPage() {
         return <Pet />;
       case "schedule":
         return <Schedule />;
+      case "cart":
       case "wishlist":
         return <Wishlist />;
       case "order":

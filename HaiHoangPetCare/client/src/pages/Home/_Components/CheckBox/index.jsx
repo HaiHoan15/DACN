@@ -85,7 +85,7 @@ const Checkbox = () => {
               <div className="py-1.5">
                 {/* Thông tin chi tiết */}
                 <NavLink
-                  to="nguoi-dung"
+                  to="nguoi-dung?tab=profile"
                   className="group relative flex items-center w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 transition-all duration-200"
                 >
                   <div className="absolute left-0 top-0 h-full w-1 bg-blue-500 rounded-r opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-y-100 scale-y-80" />

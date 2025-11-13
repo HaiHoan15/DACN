@@ -9,7 +9,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include 'connect.php';
 
 // Lấy tất cả user (chỉ cần Email và ID)
-$sql = "SELECT User_ID, Email FROM user";
+$sql = "SELECT User_ID, Fullname, Email, Phone, Birthday, UserPicture, Role, Address FROM user";
 $result = $conn->query($sql);
 
 $users = [];

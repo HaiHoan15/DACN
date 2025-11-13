@@ -28,8 +28,12 @@ const ProductCard = ({ product }) => {
       {/* Ảnh sản phẩm */}
       <div className="flex-shrink-0">
         <img
-          src={product.ProductPicture}
+          src={product.ProductPicture || "/images/product.png"}
           alt={product.ProductName}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = "/images/product.png";
+          }}
           className="w-full h-56 object-cover"
         />
       </div>
