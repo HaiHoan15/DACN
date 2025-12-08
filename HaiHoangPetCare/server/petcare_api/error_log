@@ -1,0 +1,313 @@
+[01-Dec-2025 06:28:00 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'orderId' cannot be null in /home/haihvqqc/public_html/petcare_api/create_momo_payment.php:70
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/create_momo_payment.php(70): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/create_momo_payment.php on line 70
+[01-Dec-2025 06:28:02 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'orderId' cannot be null in /home/haihvqqc/public_html/petcare_api/create_momo_payment.php:70
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/create_momo_payment.php(70): mysqli_stmt->execute()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/create_momo_payment.php on line 70
+[01-Dec-2025 07:39:08 UTC] HTTP Code: 200
+[01-Dec-2025 07:39:08 UTC] Response: {
+  "id": "chatcmpl-Chsmp3XUNkYk14pXzMxk6lvVkyG57",
+  "object": "chat.completion",
+  "created": 1764574739,
+  "model": "gpt-4o-2024-08-06",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hình ảnh này cho thấy da của một con vật, có thể là chó hoặc mèo, với các nốt đỏ và mụn mủ. Những dấu hiệu này có thể là do:\n\n1. **Dị ứng**: Có thể do thức ăn, dị ứng môi trường (phấn hoa, bụi, nấm mốc), hoặc dị ứng do tiếp xúc với các chất gây kích ứng.\n\n2. **Nhiễm trùng da**: Nhiễm khuẩn hoặc nấm có thể gây ra tình trạng này, thường do vết thương hoặc cào xước.\n\n3. **Ký sinh trùng**: Ve, bọ chét hoặc chấy có thể gây ngứa và viêm da.\n\n4. **Rối loạn nội tiết**: Các vấn đề về hormone cũng có thể gây ra viêm da và nổi mụn.\n\nKhuyến nghị:\n\n- Đưa thú cưng đến bác sĩ thú y để được chẩn đoán chính xác và điều trị.\n- Tránh tự ý dùng thuốc mà không có chỉ định của bác sĩ.\n- Kiểm tra và vệ sinh môi trường sống của thú cưng để loại bỏ các tác nhân gây dị ứng hoặc ký sinh trùng.\n\nĐiều quan trọng là phải điều trị sớm để tránh tình trạng trở nên nghiêm trọng hơn.",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 319,
+    "completion_tokens": 277,
+    "total_tokens": 596,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_689bad8e9a"
+}
+
+[01-Dec-2025 10:42:00 UTC] PHP Parse error:  Unmatched '}' in /home/haihvqqc/public_html/petcare_api/chat.php on line 92
+[01-Dec-2025 10:46:39 UTC] PHP Parse error:  Unmatched '}' in /home/haihvqqc/public_html/petcare_api/chat.php on line 92
+[01-Dec-2025 11:11:28 UTC] HTTP Code: 200
+[01-Dec-2025 11:11:28 UTC] Response: {
+  "id": "chatcmpl-Chw6MV0dNtfyLYrjEgWjBwFmbkKjW",
+  "object": "chat.completion",
+  "created": 1764587482,
+  "model": "gpt-4o-2024-08-06",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hình ảnh này cho thấy da của một con vật có nhiều vết đỏ và tổn thương. Đây có thể là dấu hiệu của một số vấn đề về da như viêm da dị ứng, nhiễm trùng da, hoặc bị ký sinh trùng như bọ chét hoặc ve. \n\nĐể xử lý:\n\n1. Đưa thú cưng đến bác sĩ thú y để được khám và chẩn đoán chính xác.\n2. Giữ vệ sinh sạch sẽ cho da và lông của thú cưng.\n3. Tuân theo chỉ định điều trị của bác sĩ thú y, có thể bao gồm thuốc bôi ngoài da hoặc thuốc uống.\n4. Kiểm tra và loại bỏ các tác nhân gây dị ứng trong môi trường sống của thú cưng.\n\nViệc điều trị sớm sẽ giúp ngăn ngừa tình trạng trở nên nghiêm trọng hơn.",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 313,
+    "completion_tokens": 181,
+    "total_tokens": 494,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_689bad8e9a"
+}
+
+[01-Dec-2025 11:20:24 UTC] IMG HTTP Code: 200
+[01-Dec-2025 11:20:24 UTC] IMG Response: {
+  "id": "chatcmpl-ChwEzXknlQJXIn5aBAXpEM5qYibEy",
+  "object": "chat.completion",
+  "created": 1764588017,
+  "model": "gpt-4o-2024-08-06",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Dựa vào hình ảnh, có thể thấy chú chó này có dấu hiệu viêm da quanh vùng mắt. Vùng da này có thể bị đỏ, mất lông và có vẻ bị kích ứng.\n\nKhuyến nghị:\n\n1. **Kiểm tra thú y**: Đưa chó đến bác sĩ thú y để được kiểm tra chính xác nguyên nhân và điều trị kịp thời.\n2. **Tránh cho chó cào cấu**: Để tránh làm tình trạng nặng hơn, có thể cần dùng vòng cổ bảo vệ.\n3. **Theo dõi dị ứng hoặc nhiễm trùng**: Đây có thể là dấu hiệu của dị ứng hoặc nhiễm trùng, nên cần được điều trị phù hợp.\n\nHãy đảm bảo chú chó được chăm sóc kỹ lưỡng và theo dõi tình trạng sức khỏe thường xuyên.",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 488,
+    "completion_tokens": 174,
+    "total_tokens": 662,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_689bad8e9a"
+}
+
+[01-Dec-2025 15:02:15 UTC] IMG HTTP Code: 200
+[01-Dec-2025 15:02:15 UTC] IMG Response: {
+  "id": "chatcmpl-ChzhiGpD4V6fZrrp6o2UBbdqgJ510",
+  "object": "chat.completion",
+  "created": 1764601330,
+  "model": "gpt-4o-2024-08-06",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Dựa trên hình ảnh, chú chó có thể đang gặp vấn đề về da như viêm da, nhiễm trùng, hoặc do ký sinh trùng (như bọ chét hoặc ghẻ). Các triệu chứng như mẩn đỏ, rụng lông hoặc ngứa là dấu hiệu phổ biến của những tình trạng này.\n\nTuy nhiên, để chẩn đoán chính xác, bạn nên đưa thú cưng đến bác sĩ thú y để kiểm tra và điều trị kịp thời.",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 489,
+    "completion_tokens": 105,
+    "total_tokens": 594,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_689bad8e9a"
+}
+
+[08-Dec-2025 20:49:01 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:31
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(31): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 31
+[08-Dec-2025 20:49:26 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:31
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(31): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 31
+[08-Dec-2025 20:49:26 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:31
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(31): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 31
+[08-Dec-2025 21:00:05 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:14 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:16 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:17 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:17 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:28 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:44 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:00:55 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:02:42 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 2
+[08-Dec-2025 21:06:58 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:05 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:32 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:07:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:30
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(30): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 30
+[08-Dec-2025 21:09:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:09:38 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:09:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:09:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:09:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:11:34 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:11:39 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:12:23 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:12:23 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.users' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_user.php:37
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_user.php(37): mysqli_query()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_user.php on line 37
+[08-Dec-2025 21:13:11 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.schedule_slot' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_appointment.php:33
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_appointment.php(33): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_appointment.php on line 33
+[08-Dec-2025 21:13:43 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.schedule_slot' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_appointment.php:33
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_appointment.php(33): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_appointment.php on line 33
+[08-Dec-2025 21:16:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.schedule_slot' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_appointment.php:33
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_appointment.php(33): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_appointment.php on line 33
+[08-Dec-2025 22:07:34 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.schedule_slot' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_appointment.php:33
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_appointment.php(33): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_appointment.php on line 33
+[08-Dec-2025 22:09:30 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'haihvqqc_petcare_db.schedule_slot' doesn't exist in /home/haihvqqc/public_html/petcare_api/delete_appointment.php:33
+Stack trace:
+#0 /home/haihvqqc/public_html/petcare_api/delete_appointment.php(33): mysqli->prepare()
+#1 {main}
+  thrown in /home/haihvqqc/public_html/petcare_api/delete_appointment.php on line 33
